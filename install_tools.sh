@@ -64,6 +64,15 @@ install_go() {
         "${GO_BIN}" install "${pkg}" 2>/dev/null && ok "${name} installed" || err "${name}"
 }
 
+# amass - install from pre-built release (go install fails on private sub-deps)
+log "Installing amass..."
+curl -sLo /tmp/amass.tar.gz \
+    https://github.com/owasp-amass/amass/releases/download/v5.0.1/amass_linux_amd64.tar.gz
+mkdir -p /tmp/amass_pkg && tar -xzf /tmp/amass.tar.gz -C /tmp/amass_pkg
+cp /tmp/amass_pkg/amass_linux_amd64/amass /usr/local/bin/amass
+chmod +x /usr/local/bin/amass
+ok "amass installed"
+
 install_go "github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest" "subfinder"
 install_go "github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest" "nuclei"
 install_go "github.com/projectdiscovery/httpx/cmd/httpx@latest" "httpx"
