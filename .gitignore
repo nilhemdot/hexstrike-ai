@@ -1,0 +1,16 @@
+# Virtual environments
+hexstrike-env/
+hexstrike-dev/
+venv/
+.venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# OS
+.DS_Store
